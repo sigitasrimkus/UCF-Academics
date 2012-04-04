@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}Introduction}{3}
+\contentsline {section}{\numberline {2}Mathematical model}{3}
+\contentsline {subsection}{\numberline {2.1}Implementation in FEA}{5}
+\contentsline {section}{\numberline {3}Description of FEA model and results}{5}
+\contentsline {subsection}{\numberline {3.1}FEA model}{5}
+\contentsline {subsection}{\numberline {3.2}FEA results}{5}
+\contentsline {section}{\numberline {4}Validation of the FEA results}{5}
+\contentsline {section}{\numberline {5}Conclusions}{5}
+\contentsline {section}{\numberline {6}Appendix}{6}
+\contentsline {subsection}{\numberline {6.1}MATLAB script for plotting mode shapes}{6}
+\contentsline {subsection}{\numberline {6.2}MATLAB script for plotting mode shapes}{6}
+\contentsline {subsection}{\numberline {6.3}Project responsibilities}{7}

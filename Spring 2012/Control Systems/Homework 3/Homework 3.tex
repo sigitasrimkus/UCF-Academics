@@ -1,0 +1,151 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath}
+
+\begin{document}
+Sigitas Rimkus \hfill Homework \# 3 \hfill System Control
+\begin{enumerate}
+
+% PROBLEM 1
+	\item{Consider
+		\begin{align*}			
+			\dot{\mathbf{x}} = \left[\begin{array}{cc}\lambda & 0 \\0 & \bar{\lambda}\end{array}\right]\mathbf{x} + \left[\begin{array}{c}b_1 \\\bar{b_1}\end{array}\right]u \quad \quad y = \left[\begin{array}{cc}c_1 & \bar{c_1}\end{array}\right]\mathbf{x}
+		\end{align*}
+	where the overbear denotes complex conjugate.  Verify that the equation can be formed into
+		\begin{align*}
+			\dot{\bar{\mathbf{x}}}=\bar{\mathbf{A}}\bar{\mathbf{x}}+\bar{\mathbf{b}}u \quad \quad y=\bar{\mathbf{c}}\bar{\mathbf{x}}
+		\end{align*}
+	with
+		\begin{align*}
+			\bar{\mathbf{A}}=\left[\begin{array}{cc}0 & 1 \\-\lambda \bar{\lambda} & \lambda+					\bar{\lambda}\end{array}\right] \quad \quad \bar{\mathbf{b}}=\left[\begin{array}{c}0 \\1\end{array}\right] \quad \quad \bar{\mathbf{c}}=\left[\begin{array}{cc}-2\mathrm{Re}\left(\bar{\lambda}b_1c_1\right) & 2\mathrm{Re}\left(b_1c_1\right)\end{array}\right]
+		\end{align*}
+	by using the transformation $\mathbf{x}=\mathbf{Q\bar{x}}$ with
+		\begin{align*}
+			\mathbf{Q}=\left[\begin{array}{cc}-\bar{\lambda}b_1 & b_1 \\-\lambda \bar{b_1} & \bar{b_1}\end{array}\right]
+		\end{align*}
+	\\
+	
+	\textbf{Solution}\\
+	Solution on following page.
+	}
+	
+% PROBLEM 2
+	\newpage
+	\item{Are the two sets of state equations
+		\begin{align*}
+			\dot{\mathbf{x}}=\left[\begin{array}{ccc}2 & 1 & 2 \\0 & 2 & 2 \\0 & 0 & 1\end{array}\right]\mathbf{x}+\left[\begin{array}{c}1 \\1 \\0\end{array}\right]u \quad \quad y=\left[\begin{array}{ccc}1 & -1 & 0\end{array}\right]\mathbf{x}
+		\end{align*}
+	and
+		\begin{align*}
+			\dot{\mathbf{x}}=\left[\begin{array}{ccc}2 & 1 & 1 \\0 & 2 & 1 \\0 & 0 & -1\end{array}\right]\mathbf{x}+\left[\begin{array}{c}1 \\1 \\0\end{array}\right]u \quad \quad y=\left[\begin{array}{ccc}1 & -1 & 0\end{array}\right]\mathbf{x}
+		\end{align*}
+	equivalent?  Are they zero-state equivalent?
+	\\
+	
+	\textbf{Solution}\\
+	The two systems are equivalent provided that their characteristic polynomials match.  Thus:
+	\begin{align*}
+		\Delta_1(\lambda) &= \left(2-\lambda\right)^2\left(1-\lambda\right) = 0\\
+		\Delta_2(\lambda) &= \left(2-\lambda\right)^2\left(1+\lambda\right) = 0
+	\end{align*}
+	Since the characteristic polynomials do not match, the systems are not equivalent.  The two systems are zero-state equivalent if their transfer functions are the same, that is if $\mathbf{D}_1+\mathbf{C}_1(s\mathbf{I}-\mathbf{A}_1)^{-1}\mathbf{B}_1$ is equal to $\mathbf{D}_2+\mathbf{C}_2(s\mathbf{I}-\mathbf{A}_2)^{-1}\mathbf{B}_2$.  Thus:
+	\begin{align*}
+		\mathbf{D}_1+\mathbf{C}_1(s\mathbf{I}-\mathbf{A}_1)^{-1}\mathbf{B}_1 = \left[\begin{array}{ccc}1 & -1 & 0\end{array}\right]\left(s\left[\begin{array}{ccc}1 & 0 & 0 \\0 & 1 & 0 \\0 & 0 & 1\end{array}\right]-\left[\begin{array}{ccc}2 & 1 & 2 \\0 & 2 & 2 \\0 & 0 & 1\end{array}\right]\right)^{-1}\left[\begin{array}{c}1 \\1 \\0\end{array}\right]=-\frac{1}{(s-2)^2}\\
+		\mathbf{D}_2+\mathbf{C}_2(s\mathbf{I}-\mathbf{A}_2)^{-1}\mathbf{B}_2 = \left[\begin{array}{ccc}1 & -1 & 0\end{array}\right]\left(s\left[\begin{array}{ccc}1 & 0 & 0 \\0 & 1 & 0 \\0 & 0 & 1\end{array}\right]-\left[\begin{array}{ccc}2 & 1 & 1 \\0 & 2 & 1 \\0 & 0 & -1\end{array}\right]\right)^{-1}\left[\begin{array}{c}1 \\1 \\0\end{array}\right]=-\frac{1}{(s-2)^2}
+	\end{align*}
+	Since the transfer functions match, the systems are zero-state equivalent.
+	}
+	
+% PROBLEM 3
+	\newpage
+	\item{Find a realization for each column of $\hat{\mathbf{G}}(s)$ below and then connect them, as shown in Fig.4.4(a), to obtain a realization of $\hat{\mathbf{G}}(s)$.  What is the dimension of this realization?
+		\begin{align*}
+			\hat{\mathbf{G}}(s)=\left[\begin{array}{cc}\frac{2}{s+1} & \frac{2s-3}{(s+1)(s+2)} \\\frac{s-2}{s+1} & \frac{s}{s+2}\end{array}\right]
+		\end{align*}
+	\\
+	
+	\textbf{Solution}\\
+	A realization for $\hat{\mathbf{G}}(s)$ is:
+	\begin{align*}
+		\dot{\mathbf{x}}=\left[\begin{array}{cc|cc}-1 & 0 & 0 & 0 \\0 & -1 & 0 & 0 \\\hline 0 & 0 & -3 & -2 \\0 & 0 & 1 & 0\end{array}\right]\mathbf{x}+\left[\begin{array}{cc}1 & 0 \\0 & 0 \\0 & 1 \\0 & 0\end{array}\right]u \quad \quad y=\left[\begin{array}{cc|cc}2 & 0 & 2 & -3 \\-3 & 0 & -2 & -2\end{array}\right]\mathbf{x}+\left[\begin{array}{cc}0 & 0 \\1 & 1\end{array}\right]u
+	\end{align*}
+	This realization is a $4\times4$ realization.
+	}
+	
+%PROBLEM 4
+	\newpage
+	\item{Find a realization for each row of $\hat{\mathbf{G}}(s)$ below 4.11 and then connect them, as shown in Fig.4.4(b), to obtain a realization of $\hat{\mathbf{G}}(s)$.  What is the dimension of this realization?
+		\begin{align*}
+			\hat{\mathbf{G}}(s)=\left[\begin{array}{cc}\frac{2}{s+1} & \frac{2s-3}{(s+1)(s+2)} \\\frac{s-2}{s+1} & \frac{s}{s+2}\end{array}\right]
+		\end{align*}
+	\\
+	
+	\textbf{Solution}\\
+	A realization for $\hat{\mathbf{G}}(s)$ is:
+	\begin{align*}
+		\dot{\mathbf{x}}=\left[\begin{array}{cc|cc}-3 & -2 & 0 & 0 \\1 & 0 & 0 & 0 \\\hline 0 & 0 & -3 & -2 \\0 & 0 & 1 & 0\end{array}\right]\mathbf{x}+\left[\begin{array}{cc}1 & 0 \\0 & 0 \\\hline 0 & 1 \\0 & 0\end{array}\right]u \quad \quad y=\left[\begin{array}{cc|cc}2 & 2 & 2 & -3 \\\hline -3 & -3 & -6 & -2\end{array}\right]\mathbf{x}+\left[\begin{array}{cc}0 & 0 \\\hline 1 & 1\end{array}\right]u
+	\end{align*}
+	This realization is a $4\times4$ realization.
+	}
+	
+% PROBLEM 5
+	\newpage
+	\item{Find a realization for
+		\begin{align*}
+			\hat{\mathbf{G}}(s)=\left[\begin{array}{cc}\frac{-(12s+6)}{3s+34} & \frac{22s+23}{3s+34}\end{array}\right]
+		\end{align*}
+	\\
+	
+	\textbf{Solution}\\
+	A realization for $\hat{\mathbf{G}}(s)$ is:
+	\begin{align*}
+		\dot{\mathbf{x}}=\left[\begin{array}{cc|cc}-1 & 0 & -\frac{34}{3} & 0 \\ 0 & -1 & 0 & -\frac{34}{3} \\\hline 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0\end{array}\right]\mathbf{x}+\left[\begin{array}{cc}1 & 0 \\0 & 1 \\\hline 0 & 0 \\0 & 0\end{array}\right]u, \quad \quad y=\left[\begin{array}{cc|cc}0 & 0 & -130 & \frac{22}{3}\end{array}\right]\mathbf{x}+\left[\begin{array}{cc}-4 & \frac{22}{3}\end{array}\right]u
+	\end{align*}
+	}
+	
+% PROBLEM 6
+	\newpage
+	\item{Find the state transition matrix of
+		\begin{align*}
+			\dot{\mathbf{x}}=\left[\begin{array}{cc}-\sin t & 0 \\0 & -\cos t\end{array}\right]\mathbf{x}
+		\end{align*}
+	\\
+	
+	\textbf{Solution}\\
+	The state transition matrix was found to be:
+	\begin{align*}
+		\phi(t,t_0)=\left[\begin{array}{cc}e^{\cos t - \cos t_0} & 0 \\0 & e^{-\sin t + \sin t_0}\end{array}\right]
+	\end{align*}
+	}
+% PROBLEM 7
+	\newpage
+	\item{Verify that $\mathbf{X}(t)=e^{\mathbf{A}t}\mathbf{C}e^{\mathbf{B}t}$ is the solution of
+		\begin{align*}
+			\dot{\mathbf{X}}=\mathbf{AX}+\mathbf{XB} \quad \quad \mathbf{X}(0)=\mathbf{C}
+		\end{align*}
+	\\
+	
+	\textbf{Solution}\\
+	Solution on following page.
+	}
+	
+% PROBLEM 8
+	\newpage
+	\item{Find a time-varying realization and a time-invariant realization of the impulse response $g(t)=t^2e^{\lambda t}$.
+	\\
+	
+	\textbf{Solution}
+	\\
+	A time-varying realization of $g(t)$ is:
+	\begin{align*}
+		\dot{\mathbf{x}}(t)=\left[\begin{array}{ccc}0 & 0 & 0 \\0 & 0 & 0 \\0 & 0 & 0\end{array}\right]\mathbf{x}+\left[\begin{array}{c}e^{-\lambda t} \\-2te^{-\lambda t} \\t^2e^{-\lambda t}\end{array}\right]u(t), \quad \quad y(t)=\left[\begin{array}{ccc}t^2e^{\lambda t} & te^{\lambda t} & e^{\lambda t}\end{array}\right]\mathbf{x}(t)
+	\end{align*}
+	A time-invariant realization $g(t)$ is:
+	\begin{align*}
+		\dot{\mathbf{x}}=\left[\begin{array}{ccc}3\lambda & -3\lambda^2 & \lambda^3 \\1 & 0 & 0 \\0 & 1 & 0\end{array}\right]\mathbf{x}+\left[\begin{array}{c}1 \\0 \\0\end{array}\right]u, \quad \quad y=\left[\begin{array}{ccc}0 & 0 & 2\end{array}\right]\mathbf{x}
+	\end{align*}
+	}
+\end{enumerate}
+
+\end{document}
